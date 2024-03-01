@@ -9,7 +9,6 @@ function sortArray(arrayToSort, type) {
         var lowestValue = '';
         for (let i2 = 0; i2 < arrayToSort.length; i2++) {
             if (lowestValue == '' || sortJson[type].indexOf(arrayToSort[i2][0]) < sortJson[type].indexOf(lowestValue[0])) { 
-                //This code was derived from ^^ Mozilla web docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
                 lowestValue = arrayToSort[i2];
             } else if (sortJson[type].indexOf(arrayToSort[i2][0]) == sortJson[type].indexOf(lowestValue[0])) {
                 for (let i3 = 0; i3 < arrayToSort[i2].length; i3++) {
@@ -22,7 +21,6 @@ function sortArray(arrayToSort, type) {
         }
         finalArray.push(lowestValue);
         arrayToSort.splice(arrayToSort.indexOf(lowestValue), 1);
-        //This code was derived from  ^^ Mozilla web docs https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     }
     return finalArray;
 }
