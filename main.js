@@ -5,22 +5,24 @@ const userInput = require('node:readline').createInterface({input: process.stdin
 
 function sortArray(arrayToSort, type) {
     let finalArray = [];
-    while (arrayToSort.length > 0) {
+    let arrayToSort2 = Object.assign([], arrayToSort);
+    while (arrayToSort2.length > 0) {
         var lowestValue = '';
-        for (let i2 = 0; i2 < arrayToSort.length; i2++) {
-            if (lowestValue == '' || sortJson[type].indexOf(arrayToSort[i2][0]) < sortJson[type].indexOf(lowestValue[0])) { 
-                lowestValue = arrayToSort[i2];
-            } else if (sortJson[type].indexOf(arrayToSort[i2][0]) == sortJson[type].indexOf(lowestValue[0])) {
-                for (let i3 = 0; i3 < arrayToSort[i2].length; i3++) {
-                    if (sortJson[type].indexOf(arrayToSort[i2][i3]) < sortJson[type].indexOf(lowestValue[i3])){
-                        lowestValue = arrayToSort[i2];
+        console.log(arrayToSort2);
+        for (let i2 = 0; i2 < arrayToSort2.length; i2++) {
+            if (lowestValue == '' || sortJson[type].indexOf(arrayToSort2[i2][0]) < sortJson[type].indexOf(lowestValue[0])) { 
+                lowestValue = arrayToSort2[i2];
+            } else if (sortJson[type].indexOf(arrayToSort2[i2][0]) == sortJson[type].indexOf(lowestValue[0])) {
+                for (let i3 = 0; i3 < arrayToSort2[i2].length; i3++) {
+                    if (sortJson[type].indexOf(arrayToSort2[i2][i3]) < sortJson[type].indexOf(lowestValue[i3])){
+                        lowestValue = arrayToSort2[i2];
                         break;
                     }
                 }
             }
         }
         finalArray.push(lowestValue);
-        arrayToSort.splice(arrayToSort.indexOf(lowestValue), 1);
+        arrayToSort2.splice(arrayToSort2.indexOf(lowestValue), 1);
     }
     return finalArray;
 }
@@ -34,6 +36,7 @@ function generateTypeOptions() {
     return toReturn;
 }
 
+console.log('Here is the array sorted in reverse alphabetical order:\n' + (sortArray(arrayToSort, "reverse alphabetical")).join(', '));
 function main() {
     console.log(arrayToSort);
     userInput.question('How would you like to sort the above list? ' + generateTypeOptions().join(', ') + " >>> ", input => { 
